@@ -26,4 +26,8 @@ public class ItemWrapper {
     public int getSellin() {
         return item.sellIn;
     }
+
+    public int getQuality() {
+        return item.quality;
+    }
 }
