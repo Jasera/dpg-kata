@@ -11,64 +11,64 @@ class GildedRose {
     }
 
     public void updateQuality() {
-        for (int i = 0; i < items.length; i++) {
-            if (items[i].name.equals(AGED_BRIE)) {
-                if (items[i].quality < 50) {
-                    items[i].quality = items[i].quality + 1;
+        for (Item item : items) {
+            if (item.name.equals(AGED_BRIE)) {
+                increaseQuality(item);
+
+                reduceSellin(item);
+
+                if (item.sellIn < 0) {
+                    increaseQuality(item);
+                }
+            } else if (item.name.equals(BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT)) {
+                increaseQuality(item);
+
+                if (item.sellIn < 11) {
+                    increaseQuality(item);
                 }
 
-                items[i].sellIn = items[i].sellIn - 1;
-
-                if (items[i].sellIn < 0) {
-                    if (items[i].quality < 50) {
-                        items[i].quality = items[i].quality + 1;
-                    }
-                }
-            } else if (items[i].name.equals(BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT)) {
-                if (items[i].quality < 50) {
-                    items[i].quality = items[i].quality + 1;
-
-                    if (items[i].sellIn < 11) {
-                        if (items[i].quality < 50) {
-                            items[i].quality = items[i].quality + 1;
-                        }
-                    }
-
-                    if (items[i].sellIn < 6) {
-                        if (items[i].quality < 50) {
-                            items[i].quality = items[i].quality + 1;
-                        }
-                    }
+                if (item.sellIn < 6) {
+                    increaseQuality(item);
                 }
 
-                items[i].sellIn = items[i].sellIn - 1;
+                reduceSellin(item);
 
-                if (items[i].sellIn < 0) {
-                    items[i].quality = 0;
+                if (item.sellIn < 0) {
+                    item.quality = 0;
                 }
 
             } else {
-                if (!items[i].name.equals(BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT)) {
-                    if (items[i].quality > 0) {
-                        if (!items[i].name.equals(SULFURAS_HAND_OF_RAGNAROS)) {
-                            items[i].quality = items[i].quality - 1;
+                if (!item.name.equals(BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT)) {
+                    if (item.quality > 0) {
+                        if (!item.name.equals(SULFURAS_HAND_OF_RAGNAROS)) {
+                            item.quality = item.quality - 1;
                         }
                     }
                 }
 
-                if (!items[i].name.equals(SULFURAS_HAND_OF_RAGNAROS)) {
-                    items[i].sellIn = items[i].sellIn - 1;
+                if (!item.name.equals(SULFURAS_HAND_OF_RAGNAROS)) {
+                    reduceSellin(item);
                 }
 
-                if (items[i].sellIn < 0) {
-                    if (items[i].quality > 0) {
-                        if (!items[i].name.equals(SULFURAS_HAND_OF_RAGNAROS)) {
-                            items[i].quality = items[i].quality - 1;
+                if (item.sellIn < 0) {
+                    if (item.quality > 0) {
+                        if (!item.name.equals(SULFURAS_HAND_OF_RAGNAROS)) {
+                            item.quality = item.quality - 1;
                         }
                     }
 
                 }
             }
         }
+    }
+
+    private static void increaseQuality(Item item) {
+        if (item.quality < 50) {
+            item.quality = item.quality + 1;
+        }
+    }
+
+    private static void reduceSellin(Item item) {
+        item.sellIn = item.sellIn - 1;
     }
 }
