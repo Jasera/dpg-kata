@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class DefaultStrategyTest {
 
     @Test
-    public void testAgedBrieStrategyPositiveSellin() {
+    public void testDefaultStrategyPositiveSellin() {
         DefaultStrategy defaultStrategy = new DefaultStrategy();
 
         ItemWrapper itemWrapper = new ItemWrapper(new Item("Default", 1, 20));
@@ -21,7 +21,7 @@ class DefaultStrategyTest {
     }
 
     @Test
-    public void testAgedBrieStrategyZeroSellin() {
+    public void testDefaultStrategyZeroSellin() {
         DefaultStrategy defaultStrategy = new DefaultStrategy();
 
         ItemWrapper itemWrapper = new ItemWrapper(new Item("Default", 0, 20));
@@ -33,7 +33,7 @@ class DefaultStrategyTest {
     }
 
     @Test
-    public void testAgedBrieStrategyNegativeSellin() {
+    public void testDefaultStrategyNegativeSellin() {
         DefaultStrategy defaultStrategy = new DefaultStrategy();
 
         ItemWrapper itemWrapper = new ItemWrapper(new Item("Default", -1, 20));

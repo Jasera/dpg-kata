@@ -34,4 +34,10 @@ class StrategySelectorTest {
         Assertions.assertInstanceOf(DefaultStrategy.class, itemUpdateStrategy);
     }
 
+    @Test
+    void getConjuredStrategy() {
+        ItemUpdateStrategy itemUpdateStrategy = StrategySelector.selectItemStrategy(new Item(StrategySelector.CONJURED_MANA_CAKE, 10, 20));
+
+        Assertions.assertInstanceOf(ConjuredStrategy.class, itemUpdateStrategy);
+    }
 }
