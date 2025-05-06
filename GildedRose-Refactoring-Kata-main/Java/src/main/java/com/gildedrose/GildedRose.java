@@ -1,5 +1,7 @@
 package com.gildedrose;
 
+import com.gildedrose.strategy.AgedBrieStrategy;
+
 class GildedRose {
     public static final String AGED_BRIE = "Aged Brie";
     public static final String BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT = "Backstage passes to a TAFKAL80ETC concert";
@@ -13,13 +15,7 @@ class GildedRose {
     public void updateQuality() {
         for (Item item : items) {
             if (item.name.equals(AGED_BRIE)) {
-                increaseQuality(item);
-
-                reduceSellin(item);
-
-                if (item.sellIn < 0) {
-                    increaseQuality(item);
-                }
+                new AgedBrieStrategy().updateItem(new ItemWrapper(item));
             } else if (item.name.equals(BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT)) {
                 increaseQuality(item);
 
