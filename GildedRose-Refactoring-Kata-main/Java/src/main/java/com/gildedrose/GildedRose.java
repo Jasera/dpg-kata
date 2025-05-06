@@ -1,6 +1,7 @@
 package com.gildedrose;
 
 import com.gildedrose.strategy.AgedBrieStrategy;
+import com.gildedrose.strategy.BackStageStrategy;
 
 class GildedRose {
     public static final String AGED_BRIE = "Aged Brie";
@@ -17,21 +18,7 @@ class GildedRose {
             if (item.name.equals(AGED_BRIE)) {
                 new AgedBrieStrategy().updateItem(new ItemWrapper(item));
             } else if (item.name.equals(BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT)) {
-                increaseQuality(item);
-
-                if (item.sellIn < 11) {
-                    increaseQuality(item);
-                }
-
-                if (item.sellIn < 6) {
-                    increaseQuality(item);
-                }
-                reduceSellin(item);
-
-                if (item.sellIn < 0) {
-                    item.quality = 0;
-                }
-
+                new BackStageStrategy().updateItem(new ItemWrapper(item));
             } else if (item.name.equals(SULFURAS_HAND_OF_RAGNAROS)) {
                 item.quality = 80;
             } else {

@@ -19,6 +19,10 @@ public class ItemWrapper {
         }
     }
 
+    public void setFixedQuality(int quality) {
+        item.quality = quality;
+    }
+
     public void reduceSellin() {
         item.sellIn = item.sellIn - 1;
     }
