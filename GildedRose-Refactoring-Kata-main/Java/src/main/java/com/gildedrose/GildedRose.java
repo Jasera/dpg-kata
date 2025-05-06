@@ -30,33 +30,29 @@ class GildedRose {
                 if (item.sellIn < 6) {
                     increaseQuality(item);
                 }
-
                 reduceSellin(item);
 
                 if (item.sellIn < 0) {
                     item.quality = 0;
                 }
 
+            } else if (item.name.equals(SULFURAS_HAND_OF_RAGNAROS)) {
+                item.quality = 80;
             } else {
-                if (item.quality > 0) {
-                    if (!item.name.equals(SULFURAS_HAND_OF_RAGNAROS)) {
-                        item.quality = item.quality - 1;
-                    }
-                }
+                reduceQuality(item);
 
-                if (!item.name.equals(SULFURAS_HAND_OF_RAGNAROS)) {
-                    reduceSellin(item);
-                }
+                reduceSellin(item);
 
                 if (item.sellIn < 0) {
-                    if (item.quality > 0) {
-                        if (!item.name.equals(SULFURAS_HAND_OF_RAGNAROS)) {
-                            item.quality = item.quality - 1;
-                        }
-                    }
-
+                    reduceQuality(item);
                 }
             }
+        }
+    }
+
+    private static void reduceQuality(Item item) {
+        if (item.quality > 0) {
+            item.quality = item.quality - 1;
         }
     }
 
